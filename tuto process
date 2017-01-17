@@ -1,0 +1,19 @@
+def setup():
+    size(400, 400,)
+    background(192, 64, 0)
+    fill(0,0,200)
+    rect(height/2,width/2,50,50)
+    a=0
+    global a
+            
+def draw():
+    global a
+    if  mousePressed and a <= 0:
+        if (200<=(mouseX)<=250) and (200<=(mouseY)<=250):
+            background(random(0,255),random(0,255),random(0,255))
+            fill(random(0,255),random(0,255),random(0,255))
+            rect(height/2,width/2,50,50)
+            a=20
+            global a
+    a=a-1
+    global a
