@@ -1,0 +1,29 @@
+c=color(120,0,0)     ### Mon dur labeur du cours d'ISN
+x=25
+y=25
+speed=5
+speedDeux=3
+
+def setup():
+    size(900,700)
+
+def draw():
+    move()
+    display()
+    
+def move():
+    global x,speed,y,speedDeux
+    x= x + speed
+    y= y + speedDeux
+    if x> width-25 :
+        speed = -speed
+    if x<25:
+        speed = -speed
+    if y> height-25 :
+        speedDeux = -speedDeux
+    if y<25:
+        speedDeux = -speedDeux
+        
+def display():
+    fill(c)
+    ellipse(x,y,50,50)
