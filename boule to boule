@@ -1,0 +1,3 @@
+from math import sqrt
+
+distanceBouleàBoule=sqrt((x-xDeux)**2+(y-yDeux)**2)
