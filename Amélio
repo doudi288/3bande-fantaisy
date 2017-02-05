@@ -1,0 +1,69 @@
+scoreun=0
+scoredeux=0
+nomun="joueur 1"
+nomdeux="joueur 2"
+un=color(120,0,0)
+x=50
+y=50
+speed=5
+speedDeux=3
+rayonBalle=25
+deux=color(0,0,120)
+xDeux=50
+yDeux=50
+speedTrois=8
+speedQuatre=3
+
+xrect=825
+yrect=425
+xsize=850
+ysize=600
+
+def setup():
+    size(xsize,ysize)
+    background(255)
+    
+def draw():
+    fond()    
+    move()
+    display()
+        
+def fond():
+    rectMode(CORNERS)
+    fill(31,160,38)
+    rect(25,25,825,425)
+    fill(0)
+    textSize(25)
+    a=nomun+":"+str(scoreun)+"point(s)"
+    text(a,25,475)
+    b=nomdeux+":"+str(scoredeux)+"point(s)"
+    text(b,25,525)    
+    
+def move():
+    global x,speed,y,speedDeux,xDeux,yDeux,speedTrois,speedQuatre
+    
+    x= x + speed
+    y= y + speedDeux
+    
+    if x> xrect-rayonBalle or x<rayonBalle+25:
+        speed = -speed
+    
+    if y> yrect-rayonBalle or y<rayonBalle+25:
+        speedDeux = -speedDeux
+    
+    xDeux= xDeux + speedQuatre
+    yDeux= yDeux + speedTrois
+    
+    if xDeux> xrect-rayonBalle or xDeux<rayonBalle+25 :
+        speedQuatre = -speedQuatre
+   
+    if yDeux> yrect-rayonBalle or yDeux<rayonBalle+25:
+        speedTrois = -speedTrois
+    
+    
+          
+def display():
+    fill(un)
+    ellipse(x,y,2*rayonBalle,2*rayonBalle)
+    fill(deux)
+    ellipse(xDeux,yDeux,2*rayonBalle,2*rayonBalle)    
