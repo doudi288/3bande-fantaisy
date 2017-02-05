@@ -1,0 +1,21 @@
+scoreun=0
+scoredeux=0
+nomun="joueur 1"
+nomdeux="joueur 2"
+def setup():
+    size(850,600)
+    background(255)
+    
+def draw():
+    fond()    
+        
+def fond():
+    rectMode(CORNERS)
+    fill(31,160,38)
+    rect(25,25,825,425)
+    fill(0)
+    textSize(25)
+    a=nomun+":"+str(scoreun)+"point(s)"
+    text(a,25,475)
+    b=nomdeux+":"+str(scoredeux)+"point(s)"
+    text(b,25,525)    
