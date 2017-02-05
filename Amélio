@@ -60,12 +60,6 @@ def move():
    
     if yDeux> yrect-rayonBalle or yDeux<rayonBalle+25:
         speedTrois = -speedTrois
-    if <0:
-        speed= -speed
-        speedDeux= -speedDeux
-        speedTrois= -speedTrois
-        speedQuatre= -speedQuatre
-    
           
 def display():
     fill(un)
