@@ -1,0 +1,63 @@
+scoreun=0
+scoredeux=0
+nomun="joueur 1"
+nomdeux="joueur 2"
+un=color(120,0,0)
+x=25
+y=25
+speed=5
+speedDeux=3
+rayonBalle=25
+deux=color(0,0,120)
+xDeux=25
+yDeux=25
+speedTrois=8
+speedQuatre=3
+def setup():
+    size(850,600)
+    background(255)
+    
+def draw():
+    fond()    
+    move()
+    display()
+        
+def fond():
+    rectMode(CORNERS)
+    fill(31,160,38)
+    rect(25,25,825,425)
+    fill(0)
+    textSize(25)
+    a=nomun+":"+str(scoreun)+"point(s)"
+    text(a,25,475)
+    b=nomdeux+":"+str(scoredeux)+"point(s)"
+    text(b,25,525)    
+    
+def move():
+    global x,speed,y,speedDeux,xDeux,yDeux,speedTrois,speedQuatre
+    
+    x= x + speed
+    y= y + speedDeux
+    
+    if x> width-rayonBalle or x<rayonBalle :
+        speed = -speed
+    
+    if y> height-rayonBalle or y<rayonBalle:
+        speedDeux = -speedDeux
+    
+    xDeux= xDeux + speedQuatre
+    yDeux= yDeux + speedTrois
+    
+    if xDeux> width-rayonBalle or xDeux<rayonBalle :
+        speedQuatre = -speedQuatre
+   
+    if yDeux> height-rayonBalle or yDeux<rayonBalle:
+        speedTrois = -speedTrois
+    
+    
+          
+def display():
+    fill(un)
+    ellipse(x,y,2*rayonBalle,2*rayonBalle)
+    fill(deux)
+    ellipse(xDeux,yDeux,2*rayonBalle,2*rayonBalle)    
