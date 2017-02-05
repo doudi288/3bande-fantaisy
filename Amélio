@@ -11,7 +11,7 @@ rayonBalle=25
 deux=color(0,0,120)
 xDeux=50
 yDeux=50
-speedTrois=8
+speedTrois=4
 speedQuatre=3
 
 xrect=825
@@ -29,6 +29,7 @@ def draw():
     display()
         
 def fond():
+    background(255)
     rectMode(CORNERS)
     fill(31,160,38)
     rect(25,25,825,425)
@@ -50,7 +51,7 @@ def move():
     
     if y> yrect-rayonBalle or y<rayonBalle+25:
         speedDeux = -speedDeux
-    
+
     xDeux= xDeux + speedQuatre
     yDeux= yDeux + speedTrois
     
@@ -59,7 +60,11 @@ def move():
    
     if yDeux> yrect-rayonBalle or yDeux<rayonBalle+25:
         speedTrois = -speedTrois
-    
+    if <0:
+        speed= -speed
+        speedDeux= -speedDeux
+        speedTrois= -speedTrois
+        speedQuatre= -speedQuatre
     
           
 def display():
