@@ -1,3 +1,5 @@
+from math import sqrt
+
 scoreun=0
 scoredeux=0
 nomun="joueur 1"
@@ -9,10 +11,12 @@ speed=5
 speedDeux=3
 rayonBalle=25
 deux=color(0,0,120)
-xDeux=50
-yDeux=50
+xDeux=150
+yDeux=150
 speedTrois=4
 speedQuatre=3
+
+
 
 xrect=825
 yrect=425
@@ -41,34 +45,38 @@ def fond():
     text(b,25,525)    
     
 def move():
-    global x,speed,y,speedDeux,xDeux,yDeux,speedTrois,speedQuatre
+    global x,speed,y,speedDeux,xDeux,yDeux,speedTrois,speedQuatre,scoreun,scoredeux
     
     x= x + speed
     y= y + speedDeux
+
+    xDeux= xDeux + speedQuatre
+    yDeux= yDeux + speedTrois
+            
+    distanceBouleaBoule=sqrt((x-xDeux)**2+(y-yDeux)**2)
     
     if x> xrect-rayonBalle or x<rayonBalle+25:
         speed = -speed
+        scoreun= scoreun+1
     
     if y> yrect-rayonBalle or y<rayonBalle+25:
         speedDeux = -speedDeux
 
-    xDeux= xDeux + speedQuatre
-    yDeux= yDeux + speedTrois
+
     
     if xDeux> xrect-rayonBalle or xDeux<rayonBalle+25 :
         speedQuatre = -speedQuatre
-   
+        scoredeux= scoredeux+1
     if yDeux> yrect-rayonBalle or yDeux<rayonBalle+25:
         speedTrois = -speedTrois
-    if x==xDeux or y==yDeux:
+    if distanceBouleaBoule<50:
         speed= -speed
         speedDeux= -speedDeux
-        speedTrois= -speedTrois
+        speedTrois = speedTrois
         speedQuatre= -speedQuatre
-    
-          
+        
 def display():
     fill(un)
     ellipse(x,y,2*rayonBalle,2*rayonBalle)
     fill(deux)
-    ellipse(xDeux,yDeux,2*rayonBalle,2*rayonBalle)    
+    ellipse(xDeux,yDeux,2*rayonBalle,2*rayonBalle) 
