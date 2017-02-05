@@ -15,7 +15,7 @@ xDeux=150
 yDeux=150
 speedTrois=4
 speedQuatre=3
-
+trois=color(0)
 
 
 xrect=825
@@ -46,7 +46,7 @@ def fond():
     
 def move():
     global x,speed,y,speedDeux,xDeux,yDeux,speedTrois,speedQuatre,scoreun,scoredeux
-    
+
     x= x + speed
     y= y + speedDeux
 
@@ -57,7 +57,6 @@ def move():
     
     if x> xrect-rayonBalle or x<rayonBalle+25:
         speed = -speed
-        scoreun= scoreun+1
     
     if y> yrect-rayonBalle or y<rayonBalle+25:
         speedDeux = -speedDeux
@@ -66,9 +65,10 @@ def move():
     
     if xDeux> xrect-rayonBalle or xDeux<rayonBalle+25 :
         speedQuatre = -speedQuatre
-        scoredeux= scoredeux+1
+        
     if yDeux> yrect-rayonBalle or yDeux<rayonBalle+25:
         speedTrois = -speedTrois
+    
     if distanceBouleaBoule<50:
         speed= -speed
         speedDeux= -speedDeux
@@ -80,3 +80,11 @@ def display():
     ellipse(x,y,2*rayonBalle,2*rayonBalle)
     fill(deux)
     ellipse(xDeux,yDeux,2*rayonBalle,2*rayonBalle) 
+    fill(trois)
+    ellipse(25,25,4*rayonBalle,4*rayonBalle)
+    fill(trois)
+    ellipse(xrect,25,4*rayonBalle,4*rayonBalle)
+    fill(trois)
+    ellipse(25,yrect,4*rayonBalle,4*rayonBalle)
+    fill(trois)
+    ellipse(xrect,yrect,4*rayonBalle,4*rayonBalle)
