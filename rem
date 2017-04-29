@@ -54,7 +54,7 @@ def accueil():
     textSize(50)
     jouer="JOUER"
     text(jouer,332.5,200)
-    if mousePressed: 
+    if (mousePressed) and mouseX<492 and mouseX>318 and mouseY<222 and mouseY>142:
         etat=1
             
 
