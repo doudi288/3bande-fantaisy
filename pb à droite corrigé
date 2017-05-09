@@ -1,0 +1,46 @@
+c=color(120,0,0)
+x=25
+y=25
+speed=5
+speedDeux=3
+rayonBalle=25
+xDeux=25
+yDeux=25
+speedTrois=8
+speedQuatre=3
+def setup():
+    size(900,700)
+
+def draw():
+    background(10,80,10)
+    move()
+    display()
+    
+def move():
+    global x,speed,y,speedDeux,xDeux,yDeux,speedTrois,speedQuatre
+    x= x + speed
+    y= y + speedDeux
+    if x> width-rayonBalle :
+        speed = -speed
+    if x<rayonBalle:
+        speed = -speed
+    if y> height-rayonBalle :
+        speedDeux = -speedDeux
+    if y<rayonBalle:
+        speedDeux = -speedDeux
+    xDeux= xDeux + speedQuatre
+    yDeux= yDeux + speedTrois
+    if xDeux> width-rayonBalle :
+        speedQuatre = -speedQuatre
+    if xDeux<rayonBalle:
+        speedQuatre = -speedQuatre
+    if yDeux> height-rayonBalle :
+        speedTrois = -speedTrois
+    if yDeux<rayonBalle:
+        speedTrois = -speedTrois
+    
+          
+def display():
+    fill(c)
+    ellipse(x,y,2*rayonBalle,2*rayonBalle)
+    ellipse(xDeux,yDeux,2*rayonBalle,2*rayonBalle)

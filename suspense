@@ -1,0 +1,110 @@
+from math import sqrt
+
+scoreun=0
+scoredeux=0
+nomun="joueur 1"
+nomdeux="joueur 2"
+un=color(120,0,0)
+x=750
+y=250
+speed=0
+speedDeux=0
+rayonBalle=25
+deux=color(0,0,120)
+xDeux=50
+yDeux=295
+speedTrois=10
+speedQuatre=0
+
+
+
+xrect=825
+yrect=425
+xsize=850
+ysize=600
+
+def setup():
+    size(xsize,ysize)
+    background(255)
+    
+def draw():
+    fond()    
+    move()
+    display()
+        
+def fond():
+    background(255)
+    rectMode(CORNERS)
+    fill(31,160,38)
+    rect(25,25,825,425)
+    fill(0)
+    textSize(25)
+    a=nomun+":"+str(scoreun)+"point(s)"
+    text(a,25,475)
+    b=nomdeux+":"+str(scoredeux)+"point(s)"
+    text(b,25,525)    
+    
+def move():
+    global x,speed,y,speedDeux,xDeux,yDeux,speedTrois,speedQuatre,scoreun,scoredeux
+    
+    x= x + speed
+    y= y + speedDeux
+
+    xDeux= xDeux + speedTrois
+    yDeux= yDeux + speedQuatre
+            
+    distanceBouleaBoule=sqrt((x-xDeux)**2+(y-yDeux)**2)
+    
+    if x> xrect-rayonBalle or x<rayonBalle+25:
+        speed = -speed
+    
+    if y> yrect-rayonBalle or y<rayonBalle+25:
+        speedDeux = -speedDeux
+    
+    if xDeux> xrect-rayonBalle or xDeux<rayonBalle+25 :
+        speedTrois = -speedTrois
+    
+    if yDeux> yrect-rayonBalle or yDeux<rayonBalle+25:
+        speedQuatre = -speedQuatre
+        
+        
+    if distanceBouleaBoule<=2*rayonBalle :
+        
+        dx=(x-xDeux)
+        dy=(y-yDeux)
+        
+        sUn=speed
+        sDeux=speedDeux
+        sTrois=speedTrois
+        sQuatre=speedQuatre
+ 
+        correction = (2*rayonBalle - distanceBouleaBoule)*0.5
+        
+        x=x+(dx/distanceBouleaBoule)*correction                
+        y=y+(dy/distanceBouleaBoule)*correction
+        xDeux=xDeux-(dx/distanceBouleaBoule)*correction
+        yDeux=yDeux-(dy/distanceBouleaBoule)*correction
+        
+        dx=(x-xDeux)
+        dy=(y-yDeux)
+        
+        nx=(dx)/(2*rayonBalle)
+        ny=(dy)/(2*rayonBalle)
+        gx=-ny
+        gy=nx
+        
+        vAn=nx*sUn+ny*sDeux
+        vAg=gx*sUn+gy*sDeux
+        vBn=nx*sTrois+ny*sQuatre
+        vBg=gx*sTrois+gy*sQuatre
+        
+        speed= nx*vBn+gx*vAg
+        speedDeux= ny*vBn+gy*vAg
+        speedTrois = nx*vAn+gx*vBg
+        speedQuatre = ny*vAn+gy*vBg
+                
+def display():
+    fill(un)
+    ellipse(x,y,2*rayonBalle,2*rayonBalle)
+    fill(deux)
+    ellipse(xDeux,yDeux,2*rayonBalle,2*rayonBalle) 

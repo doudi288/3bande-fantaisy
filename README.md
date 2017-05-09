@@ -1,2 +1,2 @@
 # 3bande-fantaisy
-blc
+http://obsessing.org/
