@@ -1,5 +1,6 @@
 from math import sqrt
 
+coefficientDeRallentissement=0.9975
 GO = 0
 shoot = 1
 player = 1
@@ -7,6 +8,8 @@ scoreun=0
 scoredeux=0
 nomun="joueur 1"
 nomdeux="joueur 2"
+f1=color(58,137,35)
+f2=color(34,120,15)
 
 rayonBalle=25
 un=color(120,10,10)
@@ -38,26 +41,21 @@ ysize=600
 etat=0   
  
 def setup():
-    size(xsize,ysize)
+    size(xsize,ysize,)
     background(255)
     frameRate(100)
     billotron = loadImage("billotron.png")
-    global billotron
+    tireur = loadImage("hqdefault2.jpg")
+    global billotron, tireur
     
 def accueil():
     global etat
-    background(255)
+    background(0,128,128)
+    image(tireur,0,0)                                                                     
     rectMode(CORNERS)
-    fill(0,128,128)
-    rect(0,0,xsize,ysize)
-    fill(60,60,60)
-    rectMode(CORNERS)
-    rect(318,142,492,222)
-    fill(0)
-    textSize(50)
-    jouer="JOUER"
-    text(jouer,332.5,200)
-    if (mousePressed) and mouseX<492 and mouseX>318 and mouseY<222 and mouseY>142:
+ 
+    
+    if (mousePressed) and mouseX<250 and mouseX>0 and mouseY<120 and mouseY>60:
         etat=1
             
 
@@ -91,10 +89,14 @@ def draw():
                 global x,speed,y,speedDeux,xDeux,yDeux,speedTrois,speedQuatre,xTrois,yTrois,speedCinq,speedSix,scoreun,scoredeux, verifBoule2,verifBoule1
                 speed,speedDeux,speedTrois,speedQuatre,speedCinq,speedSix=0,0,0,0,0,0
                 shoot = 1
-                player = 2               
+                     
                 if (verifBoule1 == 1) and (verifBoule2 == 1):
                     scoreun += 1
                     player = 1
+                    
+                else:
+                    player = 2
+                        
                 verifBoule1,verifBoule2 = 0,0
                                    
         elif player == 2:               
@@ -116,21 +118,24 @@ def draw():
                 global x,speed,y,speedDeux,xDeux,yDeux,speedTrois,speedQuatre,xTrois,yTrois,speedCinq,speedSix,scoreun,scoredeux, verifBoule2,verifBoule1
                 speed,speedDeux,speedTrois,speedQuatre,speedCinq,speedSix=0,0,0,0,0,0
                 shoot = 1
-                player = 1                
+                         
                 if (verifBoule1 == 1) and (verifBoule2 == 1):
                     scoredeux += 1
                     player = 2
+                else:
+                    player = 1
+                        
                 verifBoule1,verifBoule2 = 0,0
                         
                                 
                                                 
 def fond():
-    global scoreun,scoredeux,nomun,nomdeux,billotron
+    global scoreun,scoredeux,nomun,nomdeux,billotron,f1,f2
     background(255)
     rectMode(CORNERS)
     fill(25,100,25)
     rect(0,0,850,450)
-    fill(31,150,38)
+    fill(f1)
     rect(25,25,825,425)
     fill(0)
     textSize(25)
@@ -141,7 +146,7 @@ def fond():
     image(billotron,390,451)  
     
 def move():
-    global x,speed,y,speedDeux,xDeux,yDeux,speedTrois,speedQuatre,xTrois,yTrois,speedCinq,speedSix,scoreun,scoredeux,verifBoule2,verifBoule1
+    global x,speed,y,speedDeux,xDeux,yDeux,speedTrois,speedQuatre,xTrois,yTrois,speedCinq,speedSix,scoreun,scoredeux,verifBoule2,verifBoule1,coefficientDeRallentissement
     
     x += speed
     y += speedDeux
@@ -152,12 +157,12 @@ def move():
     xTrois += speedCinq
     yTrois += speedSix 
     
-    speed=speed*0.9975
-    speedDeux=speedDeux*0.9975      
-    speedTrois=speedTrois*0.9975         
-    speedQuatre=speedQuatre*0.9975                  
-    speedCinq=speedCinq*0.9975                           
-    speedSix=speedSix*0.9975                                 
+    speed=speed*coefficientDeRallentissement
+    speedDeux=speedDeux*coefficientDeRallentissement      
+    speedTrois=speedTrois*coefficientDeRallentissement         
+    speedQuatre=speedQuatre*coefficientDeRallentissement                  
+    speedCinq=speedCinq*coefficientDeRallentissement                           
+    speedSix=speedSix*coefficientDeRallentissement                                 
                                                     
                                                             
     distanceUNtoDEUX=sqrt((x-xDeux)**2+(y-yDeux)**2)
